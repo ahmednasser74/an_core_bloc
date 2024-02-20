@@ -1,0 +1,27 @@
+name: an_core_bloc
+description: "A new Flutter package project."
+version: 0.0.1
+homepage: null
+
+environment:
+  sdk: ">=3.2.6 <4.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  an_core_ui:
+    path: ../an_core_ui
+  equatable: ^2.0.5
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.4
+  intl: ^0.18.1
+  lottie: ^3.0.0
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  assets:
+    - assets/json/
