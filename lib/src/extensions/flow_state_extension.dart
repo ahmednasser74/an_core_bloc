@@ -242,8 +242,8 @@ extension FlowStateExtension on FlowState {
             } else {
               ToastHelper.showCustomToast(
                 context: context,
-                title: errorTitle0,
-                message: message ?? errorMessage0 ?? "",
+                title: errorTitle0.translate,
+                message: message?.translate ?? errorMessage0?.translate ?? "",
                 color: instance.errorColor,
               );
             }
@@ -282,8 +282,8 @@ extension FlowStateExtension on FlowState {
             } else {
               ToastHelper.showCustomToast(
                 context: context,
-                title: successTitle0,
-                message: message ?? successMessage0 ?? "",
+                title: successTitle0.translate,
+                message: message?.translate ?? successMessage0?.translate ?? "",
                 color: instance.mainColor,
               );
             }
