@@ -43,9 +43,7 @@ class StateRenderer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget widget = Container(
-      constraints: BoxConstraints(
-        maxHeight: maxContentHeight ?? 100.h,
-      ),
+      constraints: BoxConstraints(maxHeight: 200.h),
       child: _getStateWidget(context),
     );
     if (isSliver!) {
@@ -137,16 +135,16 @@ class StateRenderer extends StatelessWidget {
 
   Widget _getAnimatedImage(String animationName) {
     return SizedBox(
-      height: 15.h,
-      width: 15.h,
+      height: 100.h,
+      width: 140.h,
       child: Lottie.asset(animationName),
     );
   }
 
   static Widget defaultLoading(String? image) {
     return SizedBox(
-      height: 15.h,
-      width: 15.h,
+      height: 100.h,
+      width: 140.h,
       child: Lottie.asset(image ?? JsonAssets.loading),
     );
   }
