@@ -28,7 +28,7 @@ class LoadingState extends FlowState<LoadingRendererType> {
   final LoadingRendererType type;
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [identityHashCode(this)];
 }
 
 class ErrorState extends FlowState<ErrorRendererType> {
