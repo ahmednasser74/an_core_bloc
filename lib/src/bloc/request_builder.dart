@@ -125,7 +125,7 @@ class RequestBuilderInitializer {
 }
 
 class RequestBuilder<B extends StateStreamable<FlowState>> extends StatelessWidget {
-  final Widget Function(BuildContext, B) contentBuilder;
+  final Widget Function(BuildContext, B, FlowState) contentBuilder;
   final Function(BuildContext, B)? retry;
   final Widget? loadingView;
   final Widget? errorView;
@@ -229,7 +229,7 @@ class RequestBuilder<B extends StateStreamable<FlowState>> extends StatelessWidg
         return state.flowStateBuilder(
           context,
           screenContent: Builder(builder: (context) {
-            return contentBuilder.call(context, context.read<B>());
+            return contentBuilder.call(context, context.read<B>(), state);
           }),
           retry: () {
             retry?.call(context, context.read<B>());

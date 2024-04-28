@@ -15,7 +15,7 @@ class InitialState extends FlowState<NormalRendererType> {
   const InitialState();
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [identityHashCode(this)];
 
   @override
   NormalRendererType? get type => NormalRendererType.content;
@@ -28,7 +28,17 @@ class LoadingState extends FlowState<LoadingRendererType> {
   final LoadingRendererType type;
 
   @override
-  List<Object?> get props => [identityHashCode(this)];
+  List<Object?> get props => [type, super.title, super.message, identityHashCode(this)];
+}
+
+class LoadingMoreState extends FlowState<LoadingRendererType> {
+  const LoadingMoreState({required this.type, super.title, super.message});
+
+  @override
+  final LoadingRendererType type;
+
+  @override
+  List<Object?> get props => [type, super.title, super.message, identityHashCode(this)];
 }
 
 class ErrorState extends FlowState<ErrorRendererType> {
@@ -38,7 +48,7 @@ class ErrorState extends FlowState<ErrorRendererType> {
   final ErrorRendererType type;
 
   @override
-  List<Object?> get props => [type, super.title, super.message];
+  List<Object?> get props => [type, super.title, super.message, identityHashCode(this)];
 }
 
 class ContentState<T> extends FlowState<NormalRendererType> {
@@ -54,7 +64,7 @@ class ContentState<T> extends FlowState<NormalRendererType> {
   NormalRendererType? get type => NormalRendererType.content;
 
   @override
-  List<Object?> get props => [randomInt, data];
+  List<Object?> get props => [randomInt, data, isLastPage, identityHashCode(this)];
 }
 
 class EmptyState extends FlowState<EmptyRendererType> {
@@ -64,7 +74,7 @@ class EmptyState extends FlowState<EmptyRendererType> {
   final EmptyRendererType type = EmptyRendererType.content;
 
   @override
-  List<Object?> get props => [super.title, super.message];
+  List<Object?> get props => [super.title, super.message, identityHashCode(this)];
 }
 
 class SuccessState extends FlowState<SuccessRendererType> {
@@ -76,5 +86,11 @@ class SuccessState extends FlowState<SuccessRendererType> {
   final dynamic data;
 
   @override
-  List<Object?> get props => [type, super.title, super.message];
+  List<Object?> get props => [
+        type,
+        super.title,
+        super.message,
+        data,
+        identityHashCode(this),
+      ];
 }
