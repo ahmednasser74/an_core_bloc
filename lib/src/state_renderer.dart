@@ -2,12 +2,11 @@ import 'package:an_core_ui/an_core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import 'bloc/request_builder.dart';
 import 'index.dart';
 
 class StateRenderer extends StatelessWidget {
   final FlowState state;
-  final Function retryActionFunction;
+  final Function? retryActionFunction;
   final double? maxContentHeight;
   final bool? isSliver;
   final bool? withScaffold;
@@ -21,7 +20,7 @@ class StateRenderer extends StatelessWidget {
     Key? key,
     required this.state,
     this.maxContentHeight,
-    required this.retryActionFunction,
+    this.retryActionFunction,
     this.isSliver = false,
     this.withScaffold = false,
     this.loadingImage,
@@ -133,11 +132,12 @@ class StateRenderer extends StatelessWidget {
     );
   }
 
-  Widget _getAnimatedImage(String animationName) {
-    return SizedBox(
-      height: 100.h,
-      width: 140.h,
-      child: Lottie.asset(animationName),
+  Widget _getAnimatedImage(String animationName, {double? height, double? width}) {
+    return AppContainer(
+      height: height ?? 200.h,
+      width: width ?? 200.w,
+      alignment: Alignment.center,
+      child: Lottie.asset(animationName, fit: BoxFit.fill),
     );
   }
 
@@ -175,7 +175,8 @@ class StateRenderer extends StatelessWidget {
     );
   }
 
-  Widget _getRetryButton(String buttonTitle, BuildContext context, Function() onPress) {
+  Widget _getRetryButton(String buttonTitle, BuildContext context, Function()? onPress) {
+    if (onPress == null) return Container();
     return Center(
       child: ElevatedButton(
         onPressed: onPress,
@@ -186,7 +187,7 @@ class StateRenderer extends StatelessWidget {
 
   Widget _defaultPopUpLoadingWidget(BuildContext context, String? title, String? image, String? message) {
     return _getDialogContent([
-      _getAnimatedImage(image ?? JsonAssets.loading),
+      _getAnimatedImage(image ?? JsonAssets.loading, height: 100.h, width: 140.w),
       _getTitle(state.title ?? title),
       _getMessage(state.message ?? message ?? ""),
     ]);
@@ -220,7 +221,7 @@ class StateRenderer extends StatelessWidget {
 
   Widget _defaultLoadingWidget(BuildContext context, String? title, String? image, String? message) {
     return _getItemsColumn([
-      _getAnimatedImage(image ?? JsonAssets.loading),
+      _getAnimatedImage(image ?? JsonAssets.loading, height: 100.h, width: 140.w),
       _getTitle(state.title ?? title),
       _getMessage(state.message ?? message ?? ""),
     ]);
@@ -234,7 +235,7 @@ class StateRenderer extends StatelessWidget {
       _getRetryButton(
         'retry'.translate,
         context,
-        () => retryActionFunction.call(),
+        retryActionFunction == null ? null : () => retryActionFunction!(),
       )
     ]);
   }

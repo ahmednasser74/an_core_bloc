@@ -231,9 +231,11 @@ class RequestBuilder<B extends StateStreamable<FlowState>> extends StatelessWidg
           screenContent: Builder(builder: (context) {
             return contentBuilder.call(context, context.read<B>(), state);
           }),
-          retry: () {
-            retry?.call(context, context.read<B>());
-          },
+          retry: retry == null
+              ? null
+              : () {
+                  retry?.call(context, context.read<B>());
+                },
           loadingView: loadingView,
           errorView: errorView,
           emptyView: emptyView,
@@ -242,6 +244,7 @@ class RequestBuilder<B extends StateStreamable<FlowState>> extends StatelessWidg
           successImage: successImage,
           loadingTitle: loadingTitle,
           loadingImage: loadingImage,
+          //* to get error message which got from response which passed in state
           errorTitle: errorTitle,
           errorImage: errorImage,
           emptyTitle: emptyTitle,

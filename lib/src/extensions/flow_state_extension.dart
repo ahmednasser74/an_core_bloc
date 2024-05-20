@@ -3,16 +3,13 @@ import 'dart:ui';
 import 'package:an_core_ui/an_core_ui.dart';
 import 'package:flutter/material.dart';
 
-import '../bloc/index.dart';
-import '../bloc/request_builder.dart';
-import '../enum/index.dart';
 import '../index.dart';
 
 extension FlowStateExtension on FlowState {
   Widget flowStateBuilder(
     BuildContext context, {
     required Widget screenContent,
-    required Function retry,
+    Function? retry,
     Widget? loadingView,
     Widget? errorView,
     Widget? emptyView,
@@ -84,7 +81,7 @@ extension FlowStateExtension on FlowState {
             String? errorTitle0 = errorTitle ?? instance.errorTitle;
             final errorImage0 = errorImage ?? instance.errorImage;
             final errorMessage0 = errorMessage ?? instance.errorMessage;
-            errorTitle0 ??= 'error'.translate;
+            // errorTitle0 ??= 'error'.translate;
 
             Widget? content = errorView;
             content ??= instance.errorView;
@@ -111,7 +108,7 @@ extension FlowStateExtension on FlowState {
           String? emptyTitle0 = emptyTitle ?? instance.emptyTitle;
           final emptyImage0 = emptyImage ?? instance.emptyImage;
           final emptyMessage0 = emptyMessage ?? instance.emptyMessage;
-          emptyTitle0 ??= 'noData'.translate;
+          // emptyTitle0 ??= 'noData'.translate;
 
           Widget? content = emptyView;
           content ??= instance.emptyView;
