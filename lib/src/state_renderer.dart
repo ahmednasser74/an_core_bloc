@@ -56,7 +56,7 @@ class StateRenderer extends StatelessWidget {
     return widget;
   }
 
-  Widget _getStateWidget(BuildContext context) {
+  Widget? _getStateWidget(BuildContext context) {
     switch (state.runtimeType) {
       case LoadingState:
         switch (state.type) {
@@ -75,6 +75,8 @@ class StateRenderer extends StatelessWidget {
             );
           case ErrorRendererType.content:
             return _defaultErrorWidget(context, errorTitle, errorImage, errorMessage);
+          case ErrorRendererType.none:
+            return null;
         }
         break;
       case SuccessState:

@@ -2,7 +2,7 @@ enum NormalRendererType { content }
 
 enum LoadingRendererType { popup, content, none }
 
-enum ErrorRendererType { popup, toast, content }
+enum ErrorRendererType { popup, toast, content, none }
 
 enum EmptyRendererType { content }
 
