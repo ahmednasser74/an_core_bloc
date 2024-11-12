@@ -37,9 +37,7 @@ extension FlowStateExtension on FlowState {
       case InitialState:
         Widget w = const Center();
         if (isSliver!) {
-          w = SliverToBoxAdapter(
-            child: w,
-          );
+          w = SliverToBoxAdapter(child: w);
         }
         return w;
 

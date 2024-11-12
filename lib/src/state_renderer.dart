@@ -164,14 +164,14 @@ class StateRenderer extends StatelessWidget {
     );
   }
 
-  Widget _getTitle(String? message) {
+  Widget _getTitle(String? message, BuildContext context) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Text(
           message ?? "",
           textAlign: TextAlign.center,
-          style: RequestBuilderInitializer.instance.titleTextStyle,
+          style: RequestBuilderInitializer.instance.titleTextStyle ?? TextStyle(color: context.isDarkTheme ? Colors.white : Colors.black),
         ),
       ),
     );
@@ -190,7 +190,7 @@ class StateRenderer extends StatelessWidget {
   Widget _defaultPopUpLoadingWidget(BuildContext context, String? title, String? image, String? message) {
     return _getDialogContent([
       _getAnimatedImage(image ?? JsonAssets.loading, height: 100.h, width: 140.w),
-      _getTitle(state.title ?? title),
+      _getTitle(state.title ?? title, context),
       _getMessage(state.message ?? message ?? ""),
     ]);
   }
@@ -205,7 +205,7 @@ class StateRenderer extends StatelessWidget {
   ) {
     return _getDialogContent([
       _getAnimatedImage(image ?? JsonAssets.error),
-      _getTitle(state.title ?? title),
+      _getTitle(state.title ?? title, context),
       _getMessage(state.message ?? message ?? ""),
       _getRetryButton(
         actionTitle ?? 'ok'.translate,
@@ -224,7 +224,7 @@ class StateRenderer extends StatelessWidget {
   Widget _defaultLoadingWidget(BuildContext context, String? title, String? image, String? message) {
     return _getItemsColumn([
       _getAnimatedImage(image ?? JsonAssets.loading, height: 100.h, width: 140.w),
-      _getTitle(state.title ?? title),
+      _getTitle(state.title ?? title, context),
       _getMessage(state.message ?? message ?? ""),
     ]);
   }
@@ -232,7 +232,7 @@ class StateRenderer extends StatelessWidget {
   Widget _defaultErrorWidget(BuildContext context, String? title, String? image, String? message) {
     return _getItemsColumn([
       _getAnimatedImage(image ?? JsonAssets.error),
-      _getTitle(state.title ?? title),
+      _getTitle(state.title ?? title, context),
       _getMessage(state.message ?? message ?? ""),
       _getRetryButton(
         'retry'.translate,
@@ -245,7 +245,7 @@ class StateRenderer extends StatelessWidget {
   Widget _defaultSuccessWidget(BuildContext context, String? title, String? image, String? message, String? actionTitle, Function? action) {
     return _getItemsColumn([
       _getAnimatedImage(image ?? JsonAssets.success),
-      _getTitle(state.title ?? title),
+      _getTitle(state.title ?? title, context),
       _getMessage(state.message ?? message ?? ""),
       _getRetryButton(
         actionTitle ?? 'ok'.translate,
@@ -264,7 +264,7 @@ class StateRenderer extends StatelessWidget {
   Widget _defaultEmptyView(BuildContext context, String? title, String? image, String? message) {
     return _getItemsColumn([
       _getAnimatedImage(image ?? JsonAssets.empty),
-      _getTitle(state.title ?? title),
+      _getTitle(state.title ?? title, context),
       _getMessage(state.message ?? message ?? ""),
     ]);
   }
@@ -272,7 +272,7 @@ class StateRenderer extends StatelessWidget {
   Widget _defaultPopUpSuccessWidget(BuildContext context, String? title, String? image, String? message, String? actionTitle, Function? action) {
     return _getDialogContent([
       _getAnimatedImage(image ?? JsonAssets.success),
-      _getTitle(state.title ?? title),
+      _getTitle(state.title ?? title, context),
       _getMessage(state.message ?? message ?? ""),
       _getRetryButton(
         actionTitle ?? 'ok'.translate,
